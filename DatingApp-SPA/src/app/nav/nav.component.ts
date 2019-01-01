@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -15,10 +15,11 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.model).subscribe(
-      next => { console.log('Logged in successfully'); },
-      error => { console.log(error); }
-    );
+    this.authService.login(this.model).subscribe(next => {
+      console.log('Logged in successfully');
+    }, error => {
+      console.log(error);
+    });
   }
 
   loggedIn() {
@@ -28,6 +29,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    console.log('Logged out');
+    console.log('logged out');
   }
+
 }

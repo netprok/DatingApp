@@ -14,27 +14,28 @@ namespace DatingApp.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly DataContext context;
+        private readonly DataContext _context;
         public ValuesController(DataContext context)
         {
-            this.context = context;
-
+            _context = context;
         }
 
         // GET api/values
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
-            var values = await this.context.Values.ToListAsync();
+            var values = await _context.Values.ToListAsync();
 
             return Ok(values);
         }
 
+        // GET api/values/5
         [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
-            var value = await this.context.Values.FirstOrDefaultAsync(x => x.Id == id);
+            var value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id);
 
             return Ok(value);
         }
